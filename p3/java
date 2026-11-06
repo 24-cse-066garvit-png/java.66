@@ -1,0 +1,45 @@
+
+interface Printable {
+    void printDocument();
+}
+interface Scannable {
+    void scanDocument();
+}
+class AllInOnePrinter implements Printable, Scannable {
+    @Override
+    public void printDocument() {
+        System.out.println("Printing document in high resolution...");
+    }
+    @Override
+    public void scanDocument() {
+        System.out.println("Scanning document and converting to PDF...");
+    }
+}
+class Device {
+    String brand = "Sony";    
+    void powerOn() {
+        System.out.println(brand + " device is now powered ON.");
+    }
+}
+class DigitalCamera extends Device implements Scannable {
+    @Override
+    public void scanDocument() {
+        System.out.println("Camera is scanning a QR code...");
+    }   
+    void takePhoto() {
+        System.out.println("Taking a 4K photograph.");
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("--- 1. Multiple Inheritance Demo ---");
+        AllInOnePrinter printer = new AllInOnePrinter();
+        printer.printDocument();
+        printer.scanDocument();
+        System.out.println("\n--- 2. Hybrid Inheritance Demo ---");
+        DigitalCamera camera = new DigitalCamera();
+        camera.powerOn();      
+        camera.scanDocument(); 
+        camera.takePhoto();    
+    }
+}
