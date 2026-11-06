@@ -1,0 +1,82 @@
+class Vehicle {
+    String brand = "Ford";
+    public void honk() {
+        System.out.println("Tuut, tuut!");
+    }
+}
+class Car extends Vehicle {
+    String modelName = "Mustang";
+    public void displayDetails() {
+        System.out.println("Brand: " + brand);
+        System.out.println("Model: " + modelName);
+    }
+}
+class Person {
+    String name;
+    public void setPersonDetails(String name) {
+        this.name = name;
+    }
+}
+class Employee extends Person {
+    int id;
+    public void setEmployeeDetails(int id) {
+        this.id = id;
+    }
+}
+class Manager extends Employee {
+    String department;
+    public void setManagerDetails(String name, int id, String department) {
+        setPersonDetails(name);
+        setEmployeeDetails(id);
+        this.department = department;
+    }
+    public void displayManagerInfo() {
+        System.out.println("Manager Name: " + name);
+        System.out.println("Employee ID: " + id);
+        System.out.println("Department: " + department);
+    }
+}
+class Shape {
+    String color;
+    public void setColor(String color) {
+        this.color = color;
+    }
+}
+class Circle extends Shape {
+    double radius;
+    public Circle(double radius, String color) {
+        this.radius = radius;
+        setColor(color);
+    }
+    public void displayCircle() {
+        System.out.printf("Circle - Color: %s, Area: %.2f\n", color, (Math.PI * radius * radius));
+    }
+}
+class Rectangle extends Shape {
+    double length, width;
+    public Rectangle(double length, double width, String color) {
+        this.length = length;
+        this.width = width;
+        setColor(color);
+    }
+    public void displayRectangle() {
+        System.out.printf("Rectangle - Color: %s, Area: %.2f\n", color, (length * width));
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("--- Single Inheritance ---");
+        Car myCar = new Car();
+        myCar.displayDetails();
+        myCar.honk();        
+        System.out.println("\n--- Multilevel Inheritance ---");
+        Manager mgr = new Manager();
+        mgr.setManagerDetails("Ananya Roy", 4001, "Engineering");
+        mgr.displayManagerInfo();       
+        System.out.println("\n--- Hierarchical Inheritance ---");
+        Circle round = new Circle(5.0, "Red");
+        round.displayCircle();
+        Rectangle box = new Rectangle(4.0, 6.0, "Blue");
+        box.displayRectangle();
+    }
+}
